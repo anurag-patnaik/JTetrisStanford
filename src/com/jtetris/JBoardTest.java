@@ -46,7 +46,7 @@ class JBoardTest extends JComponent {
 	private int pieceX;
 	private int pieceY;
 	
-	public JBoardTest(int width, int height) {
+	public JBoardTest(int width, int height) throws InvalidPieceListException, YouDunGoofedException {
 		super();
 		
 		setPreferredSize(new Dimension(width, height));
@@ -418,7 +418,7 @@ class JBoardTest extends JComponent {
 	 Creates a frame for the board tester
 	 and its controls.
 	*/
-	static public void main(String[] args)
+	static public void main(String[] args) throws InvalidPieceListException, YouDunGoofedException
 	
 	{
 		JFrame frame = new JFrame("JBoardTest");

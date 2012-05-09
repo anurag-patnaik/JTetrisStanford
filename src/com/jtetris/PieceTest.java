@@ -8,13 +8,16 @@ public class PieceTest {
 //		System.out.println("TEST: Piece.equals");
 //		Piece.testPieceEqual();
 		
-		System.out.println("TEST: Piece.PieceRow");
-		Piece.testPieceRow();
+//		System.out.println("TEST: Piece.PieceRow");
+//		Piece.testPieceRow();
 		
 //		System.out.println("TEST: Piece.getNextRotation");
 //		Piece.testGetNextRotation();
 		
 //		System.out.println("TEST: Piece.isDistinct");
 //		Piece.testIsDistinct();
+		
+		System.out.println("TEST: Piece.Init");
+		Piece.testPieceInit();
 	}
 }

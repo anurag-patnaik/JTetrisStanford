@@ -40,7 +40,60 @@ public final class Piece {
 	 wants a piece object, they must use Piece.getPieces().
 	*/
 	private Piece(Point[] points) {
-		this.body = points; //Anurag
+		// Anurag
+		this.body = points;
+		
+		int minX = Integer.MAX_VALUE;
+		int maxX = Integer.MIN_VALUE;
+		int minY = Integer.MAX_VALUE;
+		int maxY = Integer.MIN_VALUE;
+		
+		for(int i = 0; i < points.length; i++) {
+			if(points[i].x < minX) {
+				minX = points[i].x;
+			}
+			 
+			if(points[i].y < minY) {
+				minY = points[i].y;
+			}
+			
+			if(points[i].x > maxX) {
+				maxX = points[i].x;
+			}
+			 
+			if(points[i].y > maxY) {
+				maxY = points[i].y;
+			}
+		}
+		
+		// Calculate width: Max xVal - min XVal
+		width = maxX - minX;
+		height = maxY - minY;
+		
+		System.out.println("minX: " +minX);
+		System.out.println("maxX: " +maxX);
+		System.out.println("minY: " +minY);
+		System.out.println("maxY: " +maxY);
+		
+		System.out.println("Width: " +width);
+		System.out.println("Height: " +height);
+		
+		skirt = new int[width+1];
+		// Calculate skirt: lowest y for every x
+		int skirtValue = Integer.MAX_VALUE;
+		int skirtIndex = 0;
+		for(int i = minX; i <= maxX; i++) {
+			skirtValue = Integer.MAX_VALUE;
+			for(int j = 0; j <  points.length; j++) {
+				if(points[j].x == i) { // For every x
+					if(skirtValue > points[j].y) {
+						skirtValue = points[j].y; // Calculate lowest y
+					}
+				}
+			}
+			skirt[skirtIndex] = skirtValue;
+			skirtIndex++;
+		}
 	}	
 
 	
@@ -349,4 +402,19 @@ public final class Piece {
 		System.out.println("distinct= " +distinct);
 	}
 	
+	public static void testPieceInit() {
+		Piece piece = new Piece(parsePoints("0 1	1 1	1 0	2 0"));
+		piece.printBody();
+		
+		System.out.println("Width: " +piece.getWidth());
+		System.out.println("Height: " +piece.getHeight());
+		
+		int[] skirt = piece.getSkirt();
+		System.out.print("Skirt: {");
+		for(int i = 0; i < skirt.length; i++) {
+			System.out.print(skirt[i] + ",");
+		}
+		System.out.print("}");
+		System.out.println();
+	}	
 }

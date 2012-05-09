@@ -38,10 +38,18 @@ class JPieceTest extends JComponent {
 		g.setColor(Color.BLACK);
 		
 		int SQ_PX_SIZE = 20;
+		int[] skirt = root.getSkirt();
 		for(int count = 0; count < 4; count++) {
 			Point[] body = root.getBody();
+			skirt = root.getSkirt();
 			for(int i = 0; i < body.length; i++) {
+				if(body[i].y == skirt[body[i].x]) {
+					g.setColor(Color.YELLOW);
+				}
+				
 				g.fillRect((body[i].x * SQ_PX_SIZE) + 1 + count * 4 * SQ_PX_SIZE, (body[i].y * SQ_PX_SIZE) + 1, SQ_PX_SIZE-1, SQ_PX_SIZE-1);
+				
+				g.setColor(Color.BLACK);
 			}
 			
 			root = root.nextRotation();
